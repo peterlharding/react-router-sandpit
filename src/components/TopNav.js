@@ -23,6 +23,7 @@ const TopNav = () => {
             return (
                 <>
                 <li><NavLink to="/home">Home</NavLink></li>
+                <li><NavLink to="/three">Bad</NavLink></li>
                 <li style={{float: "right"}}><NavLink to="/login">Login</NavLink></li>
                 </>
             );  

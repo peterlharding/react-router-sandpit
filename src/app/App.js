@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {useSelector} from "react-redux";
 import {Route, BrowserRouter} from "react-router-dom";
 
 // import logo from '../logo.svg';
@@ -11,10 +11,15 @@ import Login from '../components/Login';
 import Logout from '../components/Logout';
 
 import TopNav from '../components/TopNav';
+import GuardedRoute from '../components/GuardedRoute';
+
+import {selectAuthenticated} from '../features/authenticated/authenticatedSlice';
 
 import './App.css';
 
 function App() {
+
+  const {authenticated} = useSelector(selectAuthenticated);
 
   return (
     <BrowserRouter>
@@ -24,9 +29,9 @@ function App() {
 
        <div className="content">
           <Route path="/home" component={Home} />
-          <Route path="/one" component={One} />
-          <Route path="/two" component={Two} />
-          <Route path="/three" component={Three} />
+          <GuardedRoute path='/one' component={One} auth={authenticated} />
+          <GuardedRoute path='/two' component={Two} auth={authenticated} />
+          <GuardedRoute path='/three' component={Three} auth={authenticated} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
        </div>
